@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue To Do List</title>
+    <!-- third party  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    
+</head>
+<body>
+    <div id="app">
+        <main class="container pb-3">
+            <h1 class="text-danger text-center mb-5">To Do List</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <!-- Form New Task -->
+                    <form class="mb-4" @submit.prevent="onFormSubmit">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="What task do you want to add?"
+                            v-model="newTaskData.text">
+                            <button class="btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                    <div class="card shadow">
+                        <div class="list-group list-group-flush">
+                            <!-- Single list element  -->
+                            <div class="list-group-item d-flex align-items-center overflow-hidden"
+                                    v-for="(task, i) in tasksList">
+                                <label class="form-check form-switch flex-fill py-5">
+                                    <input type="checkbox" class="form-check-input" role="switch"
+                                    v-model="task.status">
+                                        <div :class="{'text-decoration-line-through':task.status }">
+                                            {{task.text}}
+                                        </div>                                       
+                                </label>
+                                <button class="btn btn-danger" @click="onDeleteTaskBtn(i)"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>
